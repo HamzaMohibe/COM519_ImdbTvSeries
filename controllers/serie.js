@@ -39,7 +39,7 @@ exports.edit = async (req, res) => {
     res.render("update_tvseries", { serie: serie, id: id });
   } catch (e) {
     res.status(404).send({
-      message: `could not find a tv series ${id}.`,
+      message: `Could not find a tv series ${id}.`,
     });
   }
 };
@@ -51,7 +51,7 @@ exports.update = async (req, res) => {
     res.redirect("/series/?message= the tv series has been updated");
   } catch (e) {
     res.status(404).send({
-      message: `could not find a tv series ${id}.`,
+      message: `Could not find a tv series ${id}.`,
     });
   }
 };

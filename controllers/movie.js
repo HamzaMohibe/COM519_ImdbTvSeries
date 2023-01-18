@@ -16,7 +16,7 @@ exports.list = async (req, res) => {
       currentPage: page,
     });
   } catch (e) {
-    res.status(404).send({ message: "Could Not list tv series" });
+    res.status(404).send({ message: "Could Not list Tv Series" });
   }
 };
 
@@ -27,7 +27,7 @@ exports.delete = async (req, res) => {
     res.redirect("/movies");
   } catch (e) {
     res.status(404).send({
-      message: `could not delete movie ${id}.`,
+      message: `Could not delete Movie ${id}.`,
     });
   }
 };
@@ -39,7 +39,7 @@ exports.edit = async (req, res) => {
     res.render("update_movie", { movie: movie, id: id });
   } catch (e) {
     res.status(404).send({
-      message: `could not find a movie ${id}.`,
+      message: `Could not find a Movie ${id}.`,
     });
   }
 };
