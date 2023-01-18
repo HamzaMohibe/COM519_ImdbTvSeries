@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>New Tv Series</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      /* Remove the navbar's default margin-bottom and rounded borders */
+      .navbar {
+        margin-bottom: 0;
+        border-radius: 0;
+      }
+
+      /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+      .row.content {
+        height: 450px;
+      }
+
+      /* Set gray background color and 100% height */
+      .sidenav {
+        padding-top: 20px;
+        background-color: #f1f1f1;
+        height: 100%;
+      }
+
+      /* Set black background color, white text and some padding */
+      footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+      }
+
+      /* On small screens, set height to 'auto' for sidenav and grid */
+      @media screen and (max-width: 767px) {
+        .sidenav {
+          height: auto;
+          padding: 15px;
+        }
+        .row.content {
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('common/header'); -%>
+    <div class="container">
+      <h1 class="text-center">Add new Tv Series</h1>
+      <div class="row justify-content-md-center">
+        <div class="col-">
+          <form method="POST">
+            <div class="form-group">
+              <label for="name">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Title"
+                name="Title"
+                placeholder="Enter Title"
+              />
+            </div>
+            <% if (errors['Title']) { %>
+            <p style="color: red"><%= errors['Title'].message %></p>
+            <% } %>
+
+            <div class="form-group">
+              <label for="name">Release Year</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Release_Year"
+                name="Release_Year"
+              />
+            </div>
+
+            <% if (errors['Release_Year']) { %>
+            <p style="color: red"><%= errors['Release_Year'].message %></p>
+            <% } %>
+
+            <div class="form-group">
+              <label for="name">Runtime</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Runtime"
+                name="Runtime"
+              />
+            </div>
+            <% if (errors['Runtime']) { %>
+            <p style="color: red"><%= errors['Runtime'].message %></p>
+            <% } %>
+
+            <div class="form-group">
+              <label for="name">Genre</label>
+              <input type="text" class="form-control" id="Genre" name="Genre" />
+            </div>
+
+            <% if (errors['Genre']) { %>
+            <p style="color: red"><%= errors['Genre'].message %></p>
+            <% } %>
+            <div class="form-group">
+              <label for="name">Rating</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Rating"
+                name="Rating"
+              />
+            </div>
+            <% if (errors['Rating']) { %>
+            <p style="color: red"><%= errors['Rating'].message %></p>
+            <% } %>
+            <div class="form-group">
+              <label for="name">Cast</label>
+              <input type="text" class="form-control" id="Cast" name="Cast" />
+            </div>
+            <% if (errors['Cast']) { %>
+            <p style="color: red"><%= errors['Cast'].message %></p>
+            <% } %>
+
+            <div class="form-group">
+              <label for="name">Synopsis</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Synopsis"
+                name="Synopsis"
+              />
+            </div>
+
+            <% if (errors['Synopsis']) { %>
+            <p style="color: red"><%= errors['Synopsis'].message %></p>
+            <% } %>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <%- include('common/footer') -%>
+  </body>
+</html>

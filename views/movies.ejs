@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Movies</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      /* Remove the navbar's default margin-bottom and rounded borders */
+      .navbar {
+        margin-bottom: 0;
+        border-radius: 0;
+      }
+
+      /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+      .row.content {
+        height: 450px;
+      }
+
+      /* Set gray background color and 100% height */
+      .sidenav {
+        padding-top: 20px;
+        background-color: #f1f1f1;
+        height: 100%;
+      }
+
+      /* Set black background color, white text and some padding */
+      footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+      }
+
+      /* On small screens, set height to 'auto' for sidenav and grid */
+      @media screen and (max-width: 767px) {
+        .sidenav {
+          height: auto;
+          padding: 15px;
+        }
+        .row.content {
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('common/header'); -%>
+
+    <div class="container-fluid" style="margin-top: 50px">
+      <h1 class="mx-auto text-center">Imdb movies</h1>
+
+      <table class="table table-condensed table-bordered">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Overview</th>
+            <th>Original Language</th>
+            <th>Vote Count</th>
+            <th>Vote Average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% movies.forEach(movie => { %>
+          <tr>
+            <td><%=movie.title %></td>
+            <td><%=movie.overview %></td>
+            <td><%=movie.original_language %></td>
+            <td><%=movie.vote_count %></td>
+            <td><%=movie.vote_average %></td>
+
+            <td class="text-center">
+              <a
+                href="/movies/update/<%= movie._id %>"
+                class="btn btn-info btn-xs"
+                ><span class="glyphicon glyphicon-edit"></span> Edit</a
+              >
+              <a
+                href="/movies/delete/<%= movie._id %>"
+                class="btn btn-danger btn-xs"
+                ><span class="glyphicon glyphicon-remove"></span> Del</a
+              >
+            </td>
+          </tr>
+
+          <% }); %>
+        </tbody>
+      </table>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <% if (currentPage === 1) { %>
+
+          <li class="page-item disabled">
+            <a class="page-link" href="#">First</a>
+          </li>
+          <% } %> <% if (currentPage > 1) { %>
+          <li class="page-item">
+            <a class="page-link" href="/movies">First</a>
+          </li>
+          <% } %>
+
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 10 :  currentPage + 1 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 10 :
+              currentPage + 1 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 9 :  currentPage + 2 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 9 : currentPage
+              + 2 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 8 :  currentPage + 3 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 8 : currentPage
+              + 3 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 7 :  currentPage + 4 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 7 : currentPage
+              + 4 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 6 :  currentPage + 5 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 6 : currentPage
+              + 5 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 5 :  currentPage + 6 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 5 : currentPage
+              + 6 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 4 :  currentPage + 7 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 4 : currentPage
+              + 7 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 3 :  currentPage + 8 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 3 : currentPage
+              + 8 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 2 :  currentPage + 9 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 2 : currentPage
+              + 9 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/movies?page=<%= currentPage === numberOfPages ? currentPage - 1 :  currentPage + 10 %>"
+              ><%= currentPage === numberOfPages ? currentPage - 1 : currentPage
+              + 10 %></a
+            >
+          </li>
+
+          <% if (currentPage === numberOfPages) { %>
+
+          <li class="page-item disabled">
+            <a class="page-link" href="">Last</a>
+          </li>
+          <% } %> <% if (currentPage < numberOfPages) { %>
+          <li class="page-item">
+            <a class="page-link" href="/movies?page=<%= numberOfPages %>"
+              >Last</a
+            >
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+
+    <%- include('common/footer') -%>
+  </body>
+</html>
