@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const tvseriesSchema = new Schema(
   {
-    Title: { type: String, required: [true, "Title is required"] },
+    Title: { type: String, required: [true, "Title is required!"] },
     Release_Year: {
       type: String,
       required: [true, "Release year is required"],

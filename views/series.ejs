@@ -47,12 +47,36 @@
         }
       }
     </style>
+    <script src="scripts/search_tvseries.js"></script>
   </head>
   <body>
     <%- include('common/header'); -%>
 
     <div class="container-fluid" style="margin-top: 50px">
       <h1 class="mx-auto text-center">Imdb Tv Series</h1>
+      <form>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            width="50%"
+            placeholder="Enter Title"
+            id="searchInput"
+            required
+          />
+          <div class="input-group-btn">
+            <button
+              onclick="tvseriesSearch()"
+              type="submit"
+              class="btn btn-danger"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+      <br />
+      <div id="wineItems"></div>
 
       <table class="table table-condensed table-bordered">
         <thead>

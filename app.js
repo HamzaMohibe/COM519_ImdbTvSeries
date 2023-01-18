@@ -11,6 +11,8 @@ const bodyParser = require("body-parser");
 const serieController = require("./controllers/serie");
 const movieController = require("./controllers/movie");
 
+const tastingApiController = require("./controllers/api/serie");
+
 const app = express();
 app.set("view engine", "ejs");
 
@@ -58,6 +60,12 @@ app.post("/add_movie", movieController.add);
 app.get("/add_movie", (req, res) => {
   res.render("add_movie", { errors: {} });
 });
+
+app.get("/series", (req, res) => {
+  res.render("series", tastingApiController);
+});
+
+app.get("/api/series", tastingApiController.list);
 
 app.listen(WEB_PORT, () => {
   console.log(

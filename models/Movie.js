@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const moviesSchema = new Schema(
   {
-    title: { type: String, required: [true, "Title is required"] },
+    title: { type: String, required: [true, "Title is required!"] },
     overview: String,
     original_language: String,
     vote_count: Number,
