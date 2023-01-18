@@ -59,6 +59,18 @@ app.use("*", async (req, res, next) => {
   next();
 });
 
+const authMiddleware = async (req, res, next) => {
+  const user = await User.findById(req.session.userID);
+  if (!user) {
+    return res.redirect("/");
+  }
+  next();
+};
+
+app.get("/sign_up", (req, res) => {
+  res.render("sign_up", { errors: {} });
+});
+
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -80,6 +92,12 @@ app.post("/add_movie", movieController.add);
 app.get("/add_movie", (req, res) => {
   res.render("add_movie", { errors: {} });
 });
+
+app.get("/join", (req, res) => {
+  res.render("sign_up", { errors: {} });
+});
+app.post("/join", userController.create);
+app.post("/sign_up", userController.create);
 
 app.get("/login", (req, res) => {
   res.render("login", { errors: {} });
