@@ -4,14 +4,17 @@ const path = require("path");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
 const bodyParser = require("body-parser");
+const expressSession = require("express-session");
+const User = require("./models/User");
 
 /**
  * Controllers (route handlers).
  */
 const serieController = require("./controllers/serie");
 const movieController = require("./controllers/movie");
+const userController = require("./controllers/user");
 
-const tastingApiController = require("./controllers/api/serie");
+const tvseriesApiController = require("./controllers/api/serie");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -39,6 +42,23 @@ mongoose.connection.on("error", (err) => {
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(
+  expressSession({
+    secret: "foo barr",
+    cookie: { expires: new Date(253402300000000) },
+  })
+);
+
+app.use("*", async (req, res, next) => {
+  global.user = false;
+  if (req.session.userID && !global.user) {
+    const user = await User.findById(req.session.userID);
+    global.user = user;
+  }
+  next();
+});
+
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -61,11 +81,15 @@ app.get("/add_movie", (req, res) => {
   res.render("add_movie", { errors: {} });
 });
 
-app.get("/series", (req, res) => {
-  res.render("series", tastingApiController);
+app.get("/login", (req, res) => {
+  res.render("login", { errors: {} });
 });
+app.post("/login", userController.login);
 
-app.get("/api/series", tastingApiController.list);
+app.get("/series", (req, res) => {
+  res.render("series", tvseriesApiController);
+});
+app.get("/api/series", tvseriesApiController.list);
 
 app.listen(WEB_PORT, () => {
   console.log(
