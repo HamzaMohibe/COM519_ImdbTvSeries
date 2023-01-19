@@ -36,6 +36,14 @@
         padding: 15px;
       }
 
+      .form-group {
+        width: 50%;
+        text-align: center;
+      }
+
+      .row {
+        margin-left: 30%;
+      }
       /* On small screens, set height to 'auto' for sidenav and grid */
       @media screen and (max-width: 767px) {
         .sidenav {
@@ -50,6 +58,7 @@
   </head>
   <body>
     <%- include('common/header'); -%>
+
     <div class="container" style="margin-top: 50px">
       <h1 class="text-center">Add New Movie</h1>
       <div class="row justify-content-md-center">
@@ -77,6 +86,7 @@
                 class="form-control"
                 id="overview"
                 name="overview"
+                placeholder="Write an overview"
               />
             </div>
             <% if (errors['overview']) { %>
@@ -90,6 +100,7 @@
                 class="form-control"
                 id="original_language"
                 name="original_language"
+                placeholder="en, fr, ar.."
               />
             </div>
             <% if (errors['original_language']) { %>
@@ -103,6 +114,7 @@
                 class="form-control"
                 id="vote_count"
                 name="vote_count"
+                placeholder="Enter vote count"
               />
             </div>
             <% if (errors['vote_count']) { %>
@@ -116,6 +128,7 @@
                 class="form-control"
                 id="vote_average"
                 name="vote_average"
+                placeholder="Enter rating"
               />
             </div>
             <% if (errors['vote_average']) { %>

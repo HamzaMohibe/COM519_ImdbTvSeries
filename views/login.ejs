@@ -36,6 +36,14 @@
         padding: 15px;
       }
 
+      .form-group {
+        width: 50%;
+        text-align: center;
+      }
+
+      .row {
+        margin-left: 30%;
+      }
       /* On small screens, set height to 'auto' for sidenav and grid */
       @media screen and (max-width: 767px) {
         .sidenav {
@@ -76,6 +84,7 @@
                 class="form-control"
                 id="password"
                 name="password"
+                placeholder="Enter your password"
               />
             </div>
             <% if (errors['password']) { %>

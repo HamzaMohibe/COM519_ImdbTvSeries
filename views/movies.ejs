@@ -36,6 +36,10 @@
         padding: 15px;
       }
 
+      .input-group {
+        width: 30%;
+      }
+
       /* On small screens, set height to 'auto' for sidenav and grid */
       @media screen and (max-width: 767px) {
         .sidenav {
@@ -54,27 +58,29 @@
 
     <div class="container-fluid" style="margin-top: 50px">
       <h1 class="mx-auto text-center">Imdb movies</h1>
-      <form>
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            width="50%"
-            placeholder="Enter Title"
-            id="searchInput"
-            required
-          />
-          <div class="input-group-btn">
-            <button
-              onclick="moviesSearch()"
-              type="button"
-              class="btn btn-danger"
-            >
-              Search
-            </button>
+      <div class="col-6">
+        <form>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              width="50%"
+              placeholder="Enter Title or Genre or Year .."
+              id="searchInput"
+              required
+            />
+            <div class="input-group-btn">
+              <button
+                onclick="moviesSearch()"
+                type="button"
+                class="btn btn-danger"
+              >
+                Search
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
       <br />
       <table class="table table-condensed table-bordered" id="movies">
         <thead>
