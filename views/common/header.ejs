@@ -18,6 +18,8 @@
         <li class="active"><a href="../">Home</a></li>
         <li><a href="../series">Tv Series</a></li>
         <li><a href="../movies">Movies</a></li>
+        <% if(user) { %>
+
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"
             >Add <span class="caret"></span
@@ -27,11 +29,23 @@
             <li><a href="../add_movie">New Movie</a></li>
           </ul>
         </li>
+        <% } %>
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
+        <% if(user) { %>
+        <p class="navbar-text">
+          <span class="glyphicon glyphicon-user"></span><%= user.email %>
+        </p>
+        <li>
+          <a href="logout"
+            ><span class="glyphicon glyphicon-log-in"></span> Logout</a
+          >
+        </li>
+        <% } if(!user) { %>
         <li>
           <a href="../sign_up"
-            ><span class="glyphicon glyphicon-log-in"></span> Register</a
+            ><span class="glyphicon glyphicon-user"></span> Register</a
           >
         </li>
 
@@ -40,6 +54,7 @@
             ><span class="glyphicon glyphicon-log-in"></span> Login</a
           >
         </li>
+        <% } %>
       </ul>
     </div>
   </div>
