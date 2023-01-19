@@ -36,7 +36,11 @@ exports.create = async (req, res) => {
       password: req.body.password,
     });
     await user.save();
+    req.session.userID = user._id;
+    console.log(req.session.userID);
     res.redirect("/?message=user signed up");
+
+    return;
   } catch (e) {
     if (e.errors) {
       console.log(e.errors);

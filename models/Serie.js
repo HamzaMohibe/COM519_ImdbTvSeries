@@ -18,4 +18,6 @@ const tvseriesSchema = new Schema(
   { timestamps: true }
 );
 
+tvseriesSchema.index({ "$**": "text" });
+
 module.exports = mongoose.model("Serie", tvseriesSchema);

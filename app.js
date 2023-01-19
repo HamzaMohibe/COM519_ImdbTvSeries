@@ -99,10 +99,9 @@ app.get("/add_movie", authMiddleware, (req, res) => {
   res.render("add_movie", { errors: {} });
 });
 
-app.get("/join", (req, res) => {
+app.get("/sign_up", (req, res) => {
   res.render("sign_up", { errors: {} });
 });
-app.post("/join", userController.create);
 app.post("/sign_up", userController.create);
 
 app.get("/login", (req, res) => {
