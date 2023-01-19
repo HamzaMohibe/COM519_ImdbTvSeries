@@ -15,6 +15,7 @@ const movieController = require("./controllers/movie");
 const userController = require("./controllers/user");
 
 const tvseriesApiController = require("./controllers/api/serie");
+const moviesApiController = require("./controllers/api/movie");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -113,6 +114,11 @@ app.get("/series", (req, res) => {
   res.render("series", tvseriesApiController);
 });
 app.get("/api/series", tvseriesApiController.list);
+
+app.get("/movies", (req, res) => {
+  res.render("movies", moviesApiController);
+});
+app.get("/api/movies", moviesApiController.list);
 
 app.listen(WEB_PORT, () => {
   console.log(

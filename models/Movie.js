@@ -16,5 +16,6 @@ const moviesSchema = new Schema(
   },
   { timestamps: true }
 );
+moviesSchema.index({ "$**": "text" });
 
 module.exports = mongoose.model("Movie", moviesSchema);

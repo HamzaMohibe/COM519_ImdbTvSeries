@@ -47,14 +47,36 @@
         }
       }
     </style>
+    <script src="scripts/search_movies.js"></script>
   </head>
   <body>
     <%- include('common/header'); -%>
 
     <div class="container-fluid" style="margin-top: 50px">
       <h1 class="mx-auto text-center">Imdb movies</h1>
-
-      <table class="table table-condensed table-bordered">
+      <form>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            width="50%"
+            placeholder="Enter Title"
+            id="searchInput"
+            required
+          />
+          <div class="input-group-btn">
+            <button
+              onclick="moviesSearch()"
+              type="button"
+              class="btn btn-danger"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+      <br />
+      <table class="table table-condensed table-bordered" id="movies">
         <thead>
           <tr>
             <th>Title</th>
