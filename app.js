@@ -67,6 +67,12 @@ const authMiddleware = async (req, res, next) => {
   next();
 };
 
+app.get("/logout", async (req, res) => {
+  req.session.destroy();
+  global.user = false;
+  res.redirect("/");
+});
+
 app.get("/sign_up", (req, res) => {
   res.render("sign_up", { errors: {} });
 });
