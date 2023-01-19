@@ -86,7 +86,7 @@ app.get("/series/delete/:id", serieController.delete);
 app.get("/series/update/:id", serieController.edit);
 app.post("/series/update/:id", serieController.update);
 app.post("/add_tvseries", serieController.add);
-app.get("/add_tvseries", (req, res) => {
+app.get("/add_tvseries", authMiddleware, (req, res) => {
   res.render("add_tvseries", { errors: {} });
 });
 
@@ -95,7 +95,7 @@ app.get("/movies/delete/:id", movieController.delete);
 app.get("/movies/update/:id", movieController.edit);
 app.post("/movies/update/:id", movieController.update);
 app.post("/add_movie", movieController.add);
-app.get("/add_movie", (req, res) => {
+app.get("/add_movie", authMiddleware, (req, res) => {
   res.render("add_movie", { errors: {} });
 });
 

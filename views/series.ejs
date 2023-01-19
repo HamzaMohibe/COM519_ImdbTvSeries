@@ -88,7 +88,10 @@
             <th>Rating</th>
             <th>Cast</th>
             <th>Synopsis</th>
+
+            <% if(user.role == 1) { %>
             <th>Actions</th>
+            <% } %>
           </tr>
         </thead>
         <tbody>
@@ -102,6 +105,7 @@
             <td><%=serie.Cast %></td>
             <td><%=serie.Synopsis %></td>
 
+            <% if(user.role == 1) { %>
             <td class="text-center">
               <a
                 href="/series/update/<%= serie._id %>"
@@ -114,6 +118,7 @@
                 ><span class="glyphicon glyphicon-remove"></span> Del</a
               >
             </td>
+            <% } %>
           </tr>
 
           <% }); %>

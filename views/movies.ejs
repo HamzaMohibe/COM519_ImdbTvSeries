@@ -62,6 +62,10 @@
             <th>Original Language</th>
             <th>Vote Count</th>
             <th>Vote Average</th>
+
+            <% if(user.role == 1) { %>
+            <th>Actions</th>
+            <% } %>
           </tr>
         </thead>
         <tbody>
@@ -72,6 +76,8 @@
             <td><%=movie.original_language %></td>
             <td><%=movie.vote_count %></td>
             <td><%=movie.vote_average %></td>
+
+            <% if(user.role == 1) { %>
 
             <td class="text-center">
               <a
@@ -85,6 +91,7 @@
                 ><span class="glyphicon glyphicon-remove"></span> Del</a
               >
             </td>
+            <% } %>
           </tr>
 
           <% }); %>
