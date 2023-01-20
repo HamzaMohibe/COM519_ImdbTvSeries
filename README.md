@@ -1,6 +1,5 @@
 - [COM519\_ImdbTvSeries\&Movies](#com519_imdbtvseriesmovies)
   - [Setup](#setup)
-  - [`npm run dev`](#npm-run-dev)
 - [Introduction](#introduction)
 - [System Overview](#system-overview)
   - [Briefly describing all datastores including databases, file systems and media data stores](#briefly-describing-all-datastores-including-databases-file-systems-and-media-data-stores)
@@ -19,7 +18,7 @@ Link to Git Repository : https://github.com/HamzaMohibe/COM519_ImdbTvSeries
   `npm install`
 - Run the project in development mode -
   `npm run dev`
--
+- Visit localhost:2020
 
 # Introduction
 
