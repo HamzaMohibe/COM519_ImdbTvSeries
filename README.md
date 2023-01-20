@@ -52,6 +52,8 @@ You should rationalise the choices you made in designing your application. This 
 
   - Search functionality:
 
+    I am using API to render the database as JSON from MongoDB. I started by creating an API controller `controllers/api/serie.js` .
+
     ```
         const TvSeries = require("../../models/Serie");
         exports.list = async (req, res) => {
@@ -78,6 +80,79 @@ You should rationalise the choices you made in designing your application. This 
         };
 
     ```
+
+    For this search functionality, I didn't use a new view, I used the "series.ejs" view to display the search result in the same table where all data are loaded. We set up the search api tv series route.
+
+    ```
+        const tvseriesApiController = require("./controllers/api/serie");
+        ...
+        app.get("/series", (req, res) => {
+            res.render("series", tvseriesApiController);
+        });
+        app.get("/api/series", tvseriesApiController.list);
+
+    ```
+
+    As stated above, the search results will be injected in the same table of list of tv series in `views/series.ejs`
+
+    ```
+        <table class="table table-condensed table-bordered" id="tv_series">
+
+    ```
+
+    This code `public/search_tvseries.js` communicate with the api and inject the search results into the table with `id="tv_series" `.
+
+    ```
+        function show(data) {
+        let tab = `    <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Release_Year</th>
+                    <th>Runtime</th>
+                    <th>Genre</th>
+                    <th>Rating</th>
+                    <th>Cast</th>
+                    <th>Synopsis</th>
+                    </tr>
+                    </thead>`;
+
+        // Loop to access all rows
+        data.forEach((serie) => {
+            tab += `<tbody>
+                <tr>
+                    <td>${serie.Title}</td>
+                    <td>${serie.Release_Year}</td>
+                    <td>${serie.Runtime}</td>
+                    <td>${serie.Genre}</td>
+                    <td>${serie.Rating}</td>
+                    <td>${serie.Cast}</td>
+                    <td>${serie.Synopsis}</td>
+                    </tr>
+                    </tbdody>`;
+        });
+        // Setting innerHTML as tab variable
+        document.getElementById("tv_series").innerHTML = tab;
+        }
+
+
+        const tvseriesSearch = async () => {
+        const searchVal = document.getElementById("searchInput").value;
+        try {
+            const ref = await fetch(`/api/series/?search=${searchVal}`);
+            var searchResults = await ref.json();
+            console.log(searchResults);
+            show(searchResults);
+        } catch (e) {
+            console.log(e);
+            console.log("could not search api");
+        }
+        };
+
+    ```
+
+    Above, we first use the getElementById() to grab the search value that has been input, `const searchVal = document.getElementById("searchInput").value;`. We then go ahead and send a search request to our API `const ref = await fetch(`/api/series/?search=${searchVal}`);`. After that we call the show() function and we pass the result into a template that we created. The show(data) function loop through all rows in the data and add them to the body table, and finally, inject the whole tab in the table using `document.getElementById("tv_series").innerHTML = tab;`.
+
+    **Note: Same implementation was applied on search movies.(See code)**
 
     This an example of the search functionality, if we put the word "bad" for example, it gives you all the series with the word "bad" in their title, cast, synopsis.. without loading the page.
 
