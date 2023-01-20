@@ -2,7 +2,7 @@
   - [Setup](#setup)
 - [Introduction](#introduction)
 - [System Overview](#system-overview)
-  - [Briefly describing all datastores including databases, file systems and media data stores](#briefly-describing-all-datastores-including-databases-file-systems-and-media-data-stores)
+  - [Database](#database)
   - [Diagram MVC Stack](#diagram-mvc-stack)
   - [Key views and interfaces](#key-views-and-interfaces)
 - [Conclusion and Reflection](#conclusion-and-reflection)
@@ -19,6 +19,8 @@ Link to Git Repository : https://github.com/HamzaMohibe/COM519_ImdbTvSeries
 - Run the project in development mode -
   `npm run dev`
 - Visit localhost:2020
+- (All functionalities) Login as an admin: Hamzahamza@gmail.com / 123123
+- (Limited functionalities) Register or Login as a current user: Newuser@gmail.com / 123456
 
 # Introduction
 
@@ -40,21 +42,21 @@ The CRUD functionality for the reviews is the main functionality of the website,
 
 Overall, implementing CRUD functionality for the reviews was an important part of building the website, as it allows users to contribute their own reviews and ratings, and make the website more dynamic and engaging.
 
-## Briefly describing all datastores including databases, file systems and media data stores
+## Database
 
 For this application, I used MongoDB Atlas is a cloud-based NoSQL database service that allows me to store and query data in a non-relational format. Using MongoDB Atlas for this website was a good choice as it allows for high scalability and performance.
 
 The database have three collections:
 
-**tvseries:** this collection would store data about TV series, such as the title, release date, cast, IMDb rating and more.
+- **tvseries:** this collection would store data about TV series, such as the title, release date, cast, IMDb rating and more.
 
 ![](public/screenshots/tvseries_DB.png)
 
-**movies:** this collection would store data about movies, such as the title, vote count, IMDb rating and more.
+- **movies:** this collection would store data about movies, such as the title, vote count, IMDb rating and more.
 
 ![](public/screenshots/movie_DB.png)
 
-**users:** this collection would store data about users, such as their email, password and their role (0 if user / 1 if admin). Here I set manually an admin role for a user for testing purposes `{role : 1 }`, because when a user register to the website for the first time, by default, he got the role of a normal user.
+- **users:** this collection would store data about users, such as their email, password and their role (0 if user / 1 if admin). Here I set manually an admin role for a user for testing purposes `{role : 1 }`, because when a user register to the website for the first time, by default, he got the role of a normal user.
 
 ```
 ...
@@ -324,5 +326,5 @@ A current user can log-in to the application to gain access to some other featur
 
 Overall, I have been able to successfully build a website for recommending TV series and movies with their ratings from IMDb. I've implemented CRUD functionality for reviews, as well as authentication to allow users to add new reviews. However, I was unable to deploy the application due to a cyclic dependency issue.
 
-As for the next step, I am planning to keep working on this project by adding the functionality for the admin to view a list of users, edit their details, and set roles. It will give the admin more control over the website and its users. This can be done by adding views, controllers, and the appropriate functionality for the admin to manage the users. In addition, I will try to add the functionality to upload pictures for movies and Tv series.
+As for the next step, I am planning to keep working on this project by adding the functionality for the admin to view a list of users, edit their details, and set roles. It will give the admin more control over the website and its users. This can be done by adding views, controllers, and the appropriate functionality for the admin to manage the users. In addition, I will try to add the functionality to upload pictures for movies and Tv series, as well as, the ability for users to edit their reviews only.
 All in all, building this website was a great experience and I am happy with the outcome.
