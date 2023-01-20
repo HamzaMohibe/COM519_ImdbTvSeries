@@ -79,11 +79,9 @@ The database have three collections:
 
 Each collection would store the data in a format known as a document, which is a JSON-like structure that can include fields of various data types, such as strings, integers, and arrays.
 
-MongoDB Atlas allows you to easily create and manage indexes on your collections, which can improve the performance of your queries. You can also use MongoDB's powerful query language, the MongoDB Query Language (MQL), to query and filter the data in your collections.
+Additionally, MongoDB Atlas has built-in security features such as role-based access controls, and it provides automatic backups and disaster recovery options. This can help ensure that my data is safe and secure.
 
-Additionally, MongoDB Atlas has built-in security features such as role-based access controls, and it provides automatic backups and disaster recovery options. This can help ensure that your data is safe and secure.
-
-By using MongoDB Atlas as the database for your website, you can take advantage of its scalability, performance, and rich query capabilities to build a dynamic and engaging website for recommending TV series and movies with their ratings from IMDb.
+By using MongoDB Atlas as the database for my website, I can take advantage of its scalability, performance, and rich query capabilities to build a dynamic and engaging website for recommending TV series and movies with their ratings from IMDb.
 
 ## Diagram MVC Stack
 
