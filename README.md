@@ -30,7 +30,7 @@ You should rationalise the choices you made in designing your application. This 
 
 - General User:
   This is the home page of the website, it is a welcome page with a navbar that contains limited functionalities for general user who can view and search for movies and TV series by using the appropriate views. They can also search the reviews of movies or tv series by accessing the reviews views where there is a search bar.
-  ![image](public/screenshots/home_page_general_user.png)
+  ![](public/screenshots/home_page_general_user.png)
 
 - Registred User:
   For a registered users, they can do everything that a general user can do, but they also have additional functionality to add new reviews for movies and tv series.
