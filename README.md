@@ -101,9 +101,10 @@ By using MongoDB Atlas as the database for your website, you can take advantage 
 
 - Registered User:
 
-  For a registered users, they can do everything that a general user can do, but they also have additional functionality to add new reviews for movies and tv series.
+  For a registered users, they can do everything that a general user can do, but they also have additional functionality to add new reviews for movies and tv series `views/common/header.ejs`.
 
   ```
+  ...
   <% if(user) { %>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"
@@ -115,14 +116,14 @@ By using MongoDB Atlas as the database for your website, you can take advantage 
           </ul>
         </li>
         <% } %>
-
+  ...
   ```
 
   ![](public/screenshots/home_page_registered_user.png)
 
 **Register:**
 
-When a general user wants to register, he simply clicks the register button in the top left of the nav bar. A form need to be filled by the user with an email and password. A validation functionality is already implemented.
+When a general user wants to register, he simply clicks the register button in the top left of the nav bar. A form need to be filled by the user with an email and password. A validation form is already implemented.
 
 ![](public/screenshots/register.png)
 
@@ -321,6 +322,8 @@ A current user can log-in to the application to gain access to some other featur
   We can also see that the added movie has been inserted in the database.
 
   ![](public/screenshots/new_movie_addedinDB.png)
+
+  **Note: Same implementation was applied on adding new Tv series .(See code)**
 
 # Conclusion and Reflection
 
