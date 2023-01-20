@@ -1,6 +1,10 @@
 - [Title and Cover Page](#title-and-cover-page)
 - [Introduction](#introduction)
 - [System Overview](#system-overview)
+  - [Briefly describing all datastores including databases, file systems and media data stores](#briefly-describing-all-datastores-including-databases-file-systems-and-media-data-stores)
+  - [Key views and interfaces](#key-views-and-interfaces)
+  - [Including a diagram of the key system components and how they are linked](#including-a-diagram-of-the-key-system-components-and-how-they-are-linked)
+- [Key Design Decisions](#key-design-decisions)
 - [Database Design](#database-design)
 - [Security and Scalability](#security-and-scalability)
 - [Conclusion and Reflection](#conclusion-and-reflection)
@@ -20,13 +24,11 @@ As a fan of movies and TV shows, I found myself wanting a way to easily discover
 
 A high-level overview of how the system functions, you can use screen shots if it helps. You should consider aspects such as:
 
-Briefly describing all datastores including databases, file systems and media data stores
-Key views and interfaces
-Including a diagram of the key system components and how they are linked
-#Key Design Decisions
-You should rationalise the choices you made in designing your application. This section could be broken down into the following sections:
+## Briefly describing all datastores including databases, file systems and media data stores
 
-**Home page**
+## Key views and interfaces
+
+**Home page:**
 
 - General User:
 
@@ -40,7 +42,30 @@ You should rationalise the choices you made in designing your application. This 
 
   ![](public/screenshots/home_page_registered_user.png)
 
-**Movies / Tv Series**
+**Register:**
+
+When a general user wants to register, he simply clicks the register button in the top left of the nav bar. A form need to be filled by the user with an email and password. A validation functionality is already implemented.
+
+![](public/screenshots/register.png)
+
+When the user registers, he is redirected directly to the home page logged in, for that, in the `controllers/user.js` a session is created when a new user is created for the first time, so he will not need to log in again after registration.
+
+```
+    ...
+    await user.save();
+    req.session.userID = user._id;
+    ...
+```
+
+![](public/screenshots/user_registered.png)
+
+We can also see that the new user has been inserted in the database.
+
+![](public/screenshots/user_added_database.png)
+
+**Login:**
+
+**Movies / Tv Series:**
 
 "Example of Tv Series view" (Same functionality for movies)
 
@@ -81,7 +106,7 @@ You should rationalise the choices you made in designing your application. This 
 
     ```
 
-    For this search functionality, I didn't use a new view, I used the "series.ejs" view to display the search result in the same table where all data are loaded. We set up the search api tv series route.
+    For this search functionality, I didn't use a new view, I used the `views/series.ejs` to display the search result in the same table where all data are loaded. I linked a route to the new api controller function.
 
     ```
         const tvseriesApiController = require("./controllers/api/serie");
@@ -154,13 +179,30 @@ You should rationalise the choices you made in designing your application. This 
 
     **Note: Same implementation was applied on search movies.(See code)**
 
-    This an example of the search functionality, if we put the word "bad" for example, it gives you all the series with the word "bad" in their title, cast, synopsis.. without loading the page.
+    This an example of the search functionality, if we put the word "bad" for example, it gives you all the tv series with the word "bad" in their titles, cast, synopsis.. without loading the page.
 
     ![](public/screenshots/search.png)
 
 - Admin User:
 
   A user admin, can do everything that general/registered user can do, but they also have the ability to edit or delete a review for tv series/movie. You can see below that an admin user who is signed in, can perform actions such as edit or delete.
+
+  ```
+      <% if(user.role == 1) { %>
+          <td class="text-center">
+            <a
+              href="/series/update/<%= serie._id %>"
+              class="btn btn-info btn-xs"
+              ><span class="glyphicon glyphicon-edit"></span> Edit</a
+            >
+            <a
+              href="/series/delete/<%= serie._id %>"
+              class="btn btn-danger btn-xs"
+              ><span class="glyphicon glyphicon-remove"></span> Del</a
+            >
+          </td>
+      <% } %>
+  ```
 
   ![](public/screenshots/admin_view.png)
 
@@ -178,14 +220,15 @@ You should rationalise the choices you made in designing your application. This 
 
     ![](public/screenshots/updated_review.png)
 
-**Add a Tv series/Movie review**
+**Add a Tv series/Movie review:**
 
 "Example of Adding a new movie review" (Same functionality for tv series)
 
 - Admin / Registered User:
+
   An admin or registered user both can add new reviews by choosing from the dropdown button "Add" in the nav bar.
 
-  Let's add a new movie to test. We fill the form with the movie details and we click submit
+  Let's add a new movie to test. We fill the form with the movie details and we click submit.
 
   ![](public/screenshots/add_movie.png)
 
@@ -196,6 +239,12 @@ You should rationalise the choices you made in designing your application. This 
   We can also see that the added movie has been inserted in the database.
 
   ![](public/screenshots/new_movie_addedinDB.png)
+
+## Including a diagram of the key system components and how they are linked
+
+# Key Design Decisions
+
+You should rationalise the choices you made in designing your application. This section could be broken down into the following sections:
 
 # Database Design
 
