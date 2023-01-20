@@ -2,8 +2,8 @@
 - [Introduction](#introduction)
 - [System Overview](#system-overview)
   - [Briefly describing all datastores including databases, file systems and media data stores](#briefly-describing-all-datastores-including-databases-file-systems-and-media-data-stores)
+  - [Diagram MVC Stack](#diagram-mvc-stack)
   - [Key views and interfaces](#key-views-and-interfaces)
-  - [Including a diagram of the key system components and how they are linked](#including-a-diagram-of-the-key-system-components-and-how-they-are-linked)
 - [Key Design Decisions](#key-design-decisions)
 - [Database Design](#database-design)
 - [Security and Scalability](#security-and-scalability)
@@ -11,9 +11,6 @@
 
 # Title and Cover Page
 
-Note: it is vital that this information is displayed clearly on the cover page, failure to include this information may result in your work being returned to you unmarked.
-
-Link to your hosted web application.
 Link to Git Repository : https://github.com/HamzaMohibe/COM519_ImdbTvSeries
 
 # Introduction
@@ -22,9 +19,66 @@ As a fan of movies and TV shows, I found myself wanting a way to easily discover
 
 # System Overview
 
-A high-level overview of how the system functions, you can use screen shots if it helps. You should consider aspects such as:
+This is a CRUD application (Create, Read, Update, and Delete) which is a common pattern for building web applications, and it was applied to this website for recommending TV series and movies with their ratings from IMDb.
+
+**Create:** This operation would allow users to add new reviews for movies and TV series. This could be done by a registered user via a form on the website that allows them to submit a review, rating, and other information. The controller would then take the input, validate it and create a new review by adding it to the database.
+
+**Read:** This operation would allow all users (registered or not) to view information about movies and TV series, including their ratings and reviews. This could be done by using views to display the data from the models. Users could search and filter the information to find specific movies or TV series using API.
+
+**Update:** This operation would allow users to edit existing reviews. This could be done only by a an admin user via a form on the website that allows them to edit a review, rating and other information. The controller would then take the input, validate it and update the review in the database.
+
+**Delete:** This operation would allow users to delete existing reviews. This could be done by an admin user via a button on the website that allows them to delete the review.
+
+The CRUD functionality for the reviews is the main functionality of the website, in addition to that, the website has also user authentification and user roles (registered user & admin). As explained above, only admin can edit and delete.
+
+Overall, implementing CRUD functionality for the reviews was an important part of building the website, as it allows users to contribute their own reviews and ratings, and make the website more dynamic and engaging.
 
 ## Briefly describing all datastores including databases, file systems and media data stores
+
+For this application, I used MongoDB Atlas is a cloud-based NoSQL database service that allows me to store and query data in a non-relational format. Using MongoDB Atlas for this website was a good choice as it allows for high scalability and performance.
+
+The database have three collections:
+
+**tvseries:** this collection would store data about TV series, such as the title, release date, cast, IMDb rating and more.
+
+![](public/screenshots/tvseries_DB.png)
+
+**movies:** this collection would store data about movies, such as the title, release date, IMDb rating and more.
+
+![](public/screenshots/movie_DB.png)
+
+**users:** this collection would store data about users, such as their email, password and their role (0 if user / 1 if admin). Here I set manually an admin role for a user for testing purposes `{role : 1 }`, because when a user register to the website for the first time, by default, he got the role of a normal user.
+
+```
+...
+    const userSchema = new Schema(
+    {
+        password: { type: String, required: [true, "password is required"] },
+        role: { type: Number, default: 0 },
+        email: {
+        type: String,
+        required: [true, "email is required"],
+        unique: true,
+        },
+    },
+    { timestamps: true }
+    );
+...
+```
+
+![](public/screenshots/users_DB.png)
+
+Each collection would store the data in a format known as a document, which is a JSON-like structure that can include fields of various data types, such as strings, integers, and arrays.
+
+MongoDB Atlas allows you to easily create and manage indexes on your collections, which can improve the performance of your queries. You can also use MongoDB's powerful query language, the MongoDB Query Language (MQL), to query and filter the data in your collections.
+
+Additionally, MongoDB Atlas has built-in security features such as role-based access controls, and it provides automatic backups and disaster recovery options. This can help ensure that your data is safe and secure.
+
+By using MongoDB Atlas as the database for your website, you can take advantage of its scalability, performance, and rich query capabilities to build a dynamic and engaging website for recommending TV series and movies with their ratings from IMDb.
+
+## Diagram MVC Stack
+
+![](public/screenshots/diagram.png)
 
 ## Key views and interfaces
 
@@ -39,6 +93,21 @@ A high-level overview of how the system functions, you can use screen shots if i
 - Registered User:
 
   For a registered users, they can do everything that a general user can do, but they also have additional functionality to add new reviews for movies and tv series.
+
+  ```
+  <% if(user) { %>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Add <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="../add_tvseries">New Tv Series</a></li>
+            <li><a href="../add_movie">New Movie</a></li>
+          </ul>
+        </li>
+        <% } %>
+
+  ```
 
   ![](public/screenshots/home_page_registered_user.png)
 
@@ -64,6 +133,10 @@ We can also see that the new user has been inserted in the database.
 ![](public/screenshots/user_added_database.png)
 
 **Login:**
+
+A current user can log-in to the application to gain access to some other features such as add reviews of movies and tv series to the website or delete them if he is an admin user. It would only allow a user to log-in if user email and password matched up with the user collection.
+
+![](public/screenshots/login.png)
 
 **Movies / Tv Series:**
 
@@ -239,8 +312,6 @@ We can also see that the new user has been inserted in the database.
   We can also see that the added movie has been inserted in the database.
 
   ![](public/screenshots/new_movie_addedinDB.png)
-
-## Including a diagram of the key system components and how they are linked
 
 # Key Design Decisions
 
