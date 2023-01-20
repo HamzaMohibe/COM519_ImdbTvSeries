@@ -1,13 +1,11 @@
 - [COM519\_ImdbTvSeries\&Movies](#com519_imdbtvseriesmovies)
   - [Setup](#setup)
+  - [`npm run dev`](#npm-run-dev)
 - [Introduction](#introduction)
 - [System Overview](#system-overview)
   - [Briefly describing all datastores including databases, file systems and media data stores](#briefly-describing-all-datastores-including-databases-file-systems-and-media-data-stores)
   - [Diagram MVC Stack](#diagram-mvc-stack)
   - [Key views and interfaces](#key-views-and-interfaces)
-- [Key Design Decisions](#key-design-decisions)
-- [Database Design](#database-design)
-- [Security and Scalability](#security-and-scalability)
 - [Conclusion and Reflection](#conclusion-and-reflection)
 
 # COM519_ImdbTvSeries&Movies
@@ -17,10 +15,11 @@ Link to Git Repository : https://github.com/HamzaMohibe/COM519_ImdbTvSeries
 ## Setup
 
 - Clone the repository
-- Install Dependencies
-  `-$ npm install`
-- Run locally
-  `-$ npm run dev`
+- Install Dependencies -
+  `npm install`
+- Run the project in development mode -
+  `npm run dev`
+-
 
 # Introduction
 
@@ -322,18 +321,9 @@ A current user can log-in to the application to gain access to some other featur
 
   ![](public/screenshots/new_movie_addedinDB.png)
 
-# Key Design Decisions
-
-You should rationalise the choices you made in designing your application. This section could be broken down into the following sections:
-
-# Database Design
-
-This section will document the different database entities and how they are related.
-
-# Security and Scalability
-
-Identify in what ways your application is secure and scalable.
-
 # Conclusion and Reflection
 
-Bring the document to a close by tying together the process, and provide me with a brief reflective account of the entire project
+Overall, I have been able to successfully build a website for recommending TV series and movies with their ratings from IMDb. I've implemented CRUD functionality for reviews, as well as authentication to allow users to add new reviews. However, I was unable to deploy the application due to a cyclic dependency issue.
+
+As for the next step, I am planning to keep working on this project by adding the functionality for the admin to view a list of users, edit their details, and set roles. It will give the admin more control over the website and its users. This can be done by adding views, controllers, and the appropriate functionality for the admin to manage the users. In addition, I will try to add the functionality to upload pictures for movies and Tv series.
+All in all, building this website was a great experience and I am happy with the outcome.
