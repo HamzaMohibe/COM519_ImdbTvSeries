@@ -29,6 +29,7 @@ You should rationalise the choices you made in designing your application. This 
 **Home page**
 
 - General User:
+
   This is the home page of the website, it is a welcome page with a navbar that contains limited functionalities for general user who can view and search for movies and TV series by using the appropriate views. They can also search the reviews of movies or tv series by accessing the reviews views where there is a search bar.
   ![](public/screenshots/home_page_general_user.png)
 
