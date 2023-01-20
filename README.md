@@ -1,4 +1,5 @@
-- [Title and Cover Page](#title-and-cover-page)
+- [COM519\_ImdbTvSeries\&Movies](#com519_imdbtvseriesmovies)
+  - [Setup](#setup)
 - [Introduction](#introduction)
 - [System Overview](#system-overview)
   - [Briefly describing all datastores including databases, file systems and media data stores](#briefly-describing-all-datastores-including-databases-file-systems-and-media-data-stores)
@@ -9,9 +10,17 @@
 - [Security and Scalability](#security-and-scalability)
 - [Conclusion and Reflection](#conclusion-and-reflection)
 
-# Title and Cover Page
+# COM519_ImdbTvSeries&Movies
 
 Link to Git Repository : https://github.com/HamzaMohibe/COM519_ImdbTvSeries
+
+## Setup
+
+- Clone the repository
+- Install Dependencies
+  `-$ npm install`
+- Run locally
+  `-$ npm run dev`
 
 # Introduction
 
@@ -43,7 +52,7 @@ The database have three collections:
 
 ![](public/screenshots/tvseries_DB.png)
 
-**movies:** this collection would store data about movies, such as the title, release date, IMDb rating and more.
+**movies:** this collection would store data about movies, such as the title, vote count, IMDb rating and more.
 
 ![](public/screenshots/movie_DB.png)
 
