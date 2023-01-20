@@ -52,37 +52,36 @@ You should rationalise the choices you made in designing your application. This 
 
   - Search functionality:
 
-        ```
+    ```
         const TvSeries = require("../../models/Serie");
+        exports.list = async (req, res) => {
+        const searchQuery = req.query.search;
 
-    exports.list = async (req, res) => {
-    const searchQuery = req.query.search;
+        if (!searchQuery) {
+            res.json([]);
+        }
 
-  if (!searchQuery) {
-  res.json([]);
-  }
+        try {
+            const Result = await TvSeries.find(
+            { $text: { $search: searchQuery } },
+            { score: { $meta: "textScore" } }
+            )
+            .sort({ score: { $meta: "textScore" } })
+            .limit(50);
+            res.json(Result);
+        } catch (error) {
+            console.log(error);
+            res.status(404).send({
+            message: `could not perform search`,
+            });
+        }
+        };
 
-  try {
-  const Result = await TvSeries.find(
-  { $text: { $search: searchQuery } },
-  { score: { $meta: "textScore" } }
-  )
-  .sort({ score: { $meta: "textScore" } })
-  .limit(50);
-  res.json(Result);
-  } catch (error) {
-  console.log(error);
-  res.status(404).send({
-  message: `could not perform search`,
-  });
-  }
-  };
+    ```
 
-      ```
+    This an example of the search functionality, if we put the word "bad" for example, it gives you all the series with the word "bad" in their title, cast, synopsis.. without loading the page.
 
-      This an example of the search functionality, if we put the word "bad" for example, it gives you all the series with the word "bad" in their title, cast, synopsis.. without loading the page.
-
-      ![](public/screenshots/search.png)
+    ![](public/screenshots/search.png)
 
 - Admin User:
 
