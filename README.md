@@ -1,4 +1,5 @@
 - [Title and Cover Page](#title-and-cover-page)
+- [Introduction](#introduction)
 - [System Overview](#system-overview)
 - [Database Design](#database-design)
 - [Security and Scalability](#security-and-scalability)
@@ -11,7 +12,8 @@ Note: it is vital that this information is displayed clearly on the cover page, 
 Link to your hosted web application.
 Link to Git Repository : https://github.com/HamzaMohibe/COM519_ImdbTvSeries
 
-#Introduction
+# Introduction
+
 As a fan of movies and TV shows, I found myself wanting a way to easily discover new content and keep track of my favorites. I wanted to make it easier for people to find good content: With so many TV shows and movies available, it can be overwhelming to know what to watch. Building a website that recommends movies and TV series based on IMDb ratings could make it easier for people to find good content that they will enjoy in one place. This website displays data of more than 8000 tv series and 10000 movies with an interactive user interface and various features, such as searching and adding new rating to the website for registred users .
 
 # System Overview
@@ -28,7 +30,7 @@ You should rationalise the choices you made in designing your application. This 
 
 - General User:
   This is the home page of the website, it is a welcome page with a navbar that contains limited functionalities for general user who can view and search for movies and TV series by using the appropriate views. They can also search the reviews of movies or tv series by accessing the reviews views where there is a search bar.
-  ![](public/screenshots/home_page_general_user.png)
+  ![image](public/screenshots/home_page_general_user.png)
 
 - Registred User:
   For a registered users, they can do everything that a general user can do, but they also have additional functionality to add new reviews for movies and tv series.
